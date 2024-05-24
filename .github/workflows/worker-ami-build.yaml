@@ -75,21 +75,20 @@ jobs:
           repository: 'datajoint-company/dj-gitops'
           path: 'dj-gitops'
       - name: Setup Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-      - run: pip install datajoint
+      - run: pip install --user datajoint
       - name: Call fetcher
         env:
           DJ_HOST: ${{ secrets.DJ_HOST }}
           DJ_USER: ${{ secrets.DJ_USER }}
           DJ_PASS: ${{ secrets.DJ_PASS }}
-          REPO_NAME: ${{ github.repository }}
+          REPO_NAME: ${{github.event.repository.name}}
           WORKER_TYPE: ${{ inputs.worker_type }}
           WORKFLOW_VERSION: ${{ inputs.workflow_version }}
           STAGING: ${{ inputs.staging }}
         run: |
-          export REPO_NAME=$(echo ${REPO_NAME} | cut -d "/" -f 2)
           export ORG_NAME=$(echo ${REPO_NAME} | cut -d "_" -f 1)
           export WORKFLOW_NAME=$(echo ${REPO_NAME} | cut -d "_" -f 2)
           cd ${GITHUB_WORKSPACE}/dj-gitops/infrastructures/packer/worker_ami/inputs/
@@ -99,14 +98,13 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.BUILD_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.BUILD_AWS_SECRET_ACCESS_KEY }}
           STAGING: ${{ inputs.staging }}
-          REPO_NAME: ${{ github.repository }}
+          REPO_NAME: ${{github.event.repository.name}}
           DOCKER_REGISTRY_HOST: ${{ secrets.DOCKER_REGISTRY_HOST }}
           DOCKER_REGISTRY_REPO: ${{ secrets.DOCKER_REGISTRY_REPO }}
           DOCKER_REGISTRY_USERNAME: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
           DOCKER_REGISTRY_PASSWORD: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
         run: |
           # Set up deploy SSH key
-          export REPO_NAME=$(echo ${REPO_NAME} | cut -d "/" -f 2)
           echo -n "${{ secrets.DEPLOY_SSH_KEY_BASE64 }}" | base64 -d > ${GITHUB_WORKSPACE}/dj-gitops/infrastructures/packer/worker_ami/keys/${REPO_NAME}-deploy.pem
           cd ${GITHUB_WORKSPACE}/dj-gitops/infrastructures/packer/worker_ami
           packer init .
