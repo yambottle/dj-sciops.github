@@ -76,10 +76,10 @@ jobs:
           path: 'dj-gitops'
       - name: Setup Python
         uses: actions/setup-python@v5
+        # WARNING: Running pip as the 'root'
+        # https://github.com/actions/setup-python/issues/513
         with:
           python-version: '3.10'
-        env:
-          PIP_ROOT_USER_ACTION: ignore
       - run: pip install --user datajoint
       - name: Call fetcher
         env:
