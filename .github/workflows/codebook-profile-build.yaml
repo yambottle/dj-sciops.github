@@ -86,7 +86,7 @@ jobs:
           export DEPLOY_KEY=${REPO_NAME}-deploy.pem
 
           ## Build image
-          docker-compose build
+          docker compose build
       - name: Login to vathes Registry
         uses: docker/login-action@v1
         with:
