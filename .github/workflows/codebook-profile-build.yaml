@@ -12,6 +12,12 @@ on:
         required: true
         type: string
     secrets:
+      RUNNER_PAT:
+        required: true
+      RUNNER_AWS_ACCESS_KEY_ID:
+        required: true
+      RUNNER_AWS_SECRET_ACCESS_KEY:
+        required: true
       DEPLOY_SSH_KEY_BASE64:
         required: true
       DOCKER_REGISTRY_HOST:
@@ -23,6 +29,27 @@ on:
       DOCKER_REGISTRY_PASSWORD:
         required: true
 jobs:
+  start-runner:
+    timeout-minutes: 5              # normally it only takes 1-2 minutes
+    name: Start self-hosted EC2 runner   
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write        
+    steps:      
+      - name: Start EC2 runner
+        id: start-ec2-runner
+        uses: NextChapterSoftware/ec2-action-builder@v1
+        with:
+          github_token: ${{ secrets.RUNNER_PAT}}
+          aws_access_key_id: ${{ secrets.RUNNER_AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.RUNNER_AWS_SECRET_ACCESS_KEY }}
+          aws_region: "us-east-2"
+          ec2_instance_type: t3a.medium
+          ec2_ami_id: ami-03e93254c1055ef6a
+          ec2_subnet_id: "subnet-0a602071414b8b2eb"
+          ec2_security_group_id: "sg-02810c38b0dcb2462"
+          ec2_instance_ttl: 60                # Optional (default is 60 minutes)
+          ec2_spot_instance_strategy: BestEffort    # Other options are: SpotOnly, BestEffort, MaxPerformance 
   ## Build/Publish codebook env image
   build_codebook_image:
     runs-on: ubuntu-latest
