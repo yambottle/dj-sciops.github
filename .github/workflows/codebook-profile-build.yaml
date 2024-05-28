@@ -74,10 +74,10 @@ jobs:
         name: Build codebook env image
         run: |
           ## Get docker template
-          cp -r ./cicd/docker-template/codebook-profile ./main/docker/
+          cp -r ${GITHUB_WORKSPACE}/cicd/docker-template/codebook-profile ./main/docker/
 
           ## Get build info
-          cd ./main/docker/codebook-profile
+          cd ${GITHUB_WORKSPACE}/main/docker/codebook-profile
           export REPO_NAME=${{github.event.repository.name}}
           export REPO_OWNER=${{github.repository_owner}}
 
