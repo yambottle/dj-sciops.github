@@ -1,0 +1,4 @@
+{
+    "name": "worker-build-caller",
+    "description": "Datajoint Works worker AMI build caller worklfow"
+}

@@ -1,9 +1,5 @@
-## docker build --build-arg JHUB_VER=4.0.2 --build-arg PY_VER=3.10 --build-arg DEPLOY_KEY=wt-ephys-no-curation-deploy.pem --build-arg REPO_OWNER=dj-sciops --build-arg REPO_NAME=wt-ephys-no-curation -f codebook.Dockerfile -t registry.vathes.com/sciops/codebook-wt-ephys-no-curation:v0.0.0 .
-
-## Single Stage
 ARG JHUB_VER
 ARG PY_VER
-ARG DIST
 FROM datajoint/djlabhub:singleuser-${JHUB_VER}-py${PY_VER}
 
 ARG DEPLOY_KEY

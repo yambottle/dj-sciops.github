@@ -1,5 +1,4 @@
 # cd ./docker-template/codebook_env && set -a && source .env && docker-compose -f dist/debian/docker-compose-codebook_env.yaml build
-version: '2.4'
 services:
   codebook_env:
     build:

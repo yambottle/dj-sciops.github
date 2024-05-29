@@ -1,5 +1,7 @@
 {
   "conventionalCommits.scopes": [
-    "worker-ami-build"
+    "worker-ami-build",
+    "codebook-profile-build",
+    "starter-workflow"
   ]
 }
