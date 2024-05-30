@@ -15,11 +15,12 @@ on:
       staging:
         description: "Staging"
         required: true
-        default: unstable
+        default: stable
         type: choice
         options:
           - unstable
           - stable
+run-name: ${{ inputs.worker_type}}-${{ inputs.staging }}-worker-build
 
 jobs:
   get_meta:
