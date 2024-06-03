@@ -58,7 +58,7 @@ jobs:
           aws_secret_access_key: ${{ secrets.RUNNER_AWS_SECRET_ACCESS_KEY }}
           aws_region: "us-east-2"
           ec2_instance_type: t3a.medium
-          ec2_ami_id: ami-03e93254c1055ef6a
+          ec2_ami_id: ami-0adf61e89c60d1313
           ec2_subnet_id: "subnet-0a602071414b8b2eb"
           ec2_security_group_id: "sg-02810c38b0dcb2462"
           ec2_instance_ttl: 60                # Optional (default is 60 minutes)
