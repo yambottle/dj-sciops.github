@@ -61,7 +61,7 @@ jobs:
           ec2_ami_id: ami-0adf61e89c60d1313
           ec2_subnet_id: "subnet-0a602071414b8b2eb"
           ec2_security_group_id: "sg-02810c38b0dcb2462"
-          ec2_instance_ttl: 60                # Optional (default is 60 minutes)
+          ec2_instance_ttl: 120                # Optional (default is 60 minutes)
           ec2_spot_instance_strategy: BestEffort    # Other options are: SpotOnly, BestEffort, MaxPerformance 
   build_worker_ami:
     needs:
