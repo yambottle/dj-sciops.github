@@ -106,6 +106,9 @@ jobs:
           DOCKER_REGISTRY_USERNAME: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
           DOCKER_REGISTRY_PASSWORD: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
         run: |
+          echo "HOME=${HOME}"
+          whoami
+          ls ~
           # Set up deploy SSH key
           echo -n "${{ secrets.DEPLOY_SSH_KEY_BASE64 }}" | base64 -d > ${GITHUB_WORKSPACE}/dj-gitops/infrastructures/packer/worker_ami/keys/${REPO_NAME}-deploy.pem
           cd ${GITHUB_WORKSPACE}/dj-gitops/infrastructures/packer/worker_ami
