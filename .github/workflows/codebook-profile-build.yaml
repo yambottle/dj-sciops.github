@@ -99,3 +99,6 @@ jobs:
           export TAG=singleuser-${{env.JHUB_VER}}-py${{env.PY_VER}}-${{env.WORKFLOW_VERSION}}
           echo ${IMAGE} ${TAG}
           docker push "${IMAGE}:${TAG}"
+          echo ${IMAGE} latest
+          docker tag ${IMAGE}:latest
+          docker push "${IMAGE}:latest"
