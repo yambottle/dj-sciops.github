@@ -32,7 +32,7 @@ jobs:
           no_git_verify = false
           tag_format = "{version}" #
           version_variables = [
-              ${VERSION_DOT_PY_PATH} #
+              "${VERSION_DOT_PY_PATH}" #
           ]
 
           [tool.semantic_release.branches.main]
