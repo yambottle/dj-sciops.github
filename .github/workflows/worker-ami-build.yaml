@@ -48,7 +48,11 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       actions: write        
-    steps:      
+    steps:  
+      - name: Get REPO_NAME for Contract tag
+        id: get_contract_tag
+        run: |
+          echo "contract_tag=$(echo ${{github.event.repository.name}} | cut -d "_" -f 1)" >> $GITHUB_OUTPUT
       - name: Start EC2 runner
         id: start-ec2-runner
         uses: NextChapterSoftware/ec2-action-builder@v1
@@ -63,6 +67,16 @@ jobs:
           ec2_security_group_id: "sg-02810c38b0dcb2462"
           ec2_instance_ttl: 120                # Optional (default is 60 minutes)
           ec2_spot_instance_strategy: BestEffort    # Other options are: SpotOnly, BestEffort, MaxPerformance 
+          ec2_instance_tags: >
+            [
+              {"Key": "Scope", "Value": "Works"},
+              {"Key": "Contract", "Value": "${{ steps.get_contract_tag.outputs.contract_tag }}"},
+              {"Key": "Github_RunID", "Value": "${{ github.run_id }}"},
+              {"Key": "Github_Repo", "Value": "${{ github.event.repository.name }}"},
+              {"Key": "Github_Workflow_Version", "Value": "${{ inputs.workflow_version }}"},
+              {"Key": "Worker_Type", "Value": "${{ inputs.worker_type }}"},
+              {"Key": "Staging", "Value": "${{ inputs.staging }}
+            ]
   build_worker_ami:
     needs:
       - start-runner
