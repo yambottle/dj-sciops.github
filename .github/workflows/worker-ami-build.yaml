@@ -63,6 +63,7 @@ jobs:
           ec2_security_group_id: "sg-02810c38b0dcb2462"
           ec2_instance_ttl: 120                # Optional (default is 60 minutes)
           ec2_spot_instance_strategy: BestEffort    # Other options are: SpotOnly, BestEffort, MaxPerformance 
+          # TODO - tags not working: https://github.com/NextChapterSoftware/ec2-action-builder/issues/18
           ec2_instance_tags: >
             [
               {"Key": "Name", "Value": "${{github.event.repository.name}}:gha-runner:${{ github.run_id }}"}, 
