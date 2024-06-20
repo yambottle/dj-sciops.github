@@ -2,6 +2,7 @@
   "conventionalCommits.scopes": [
     "worker-ami-build",
     "codebook-profile-build",
-    "starter-workflow"
+    "starter-workflow",
+    "semantic-release"
   ]
 }
