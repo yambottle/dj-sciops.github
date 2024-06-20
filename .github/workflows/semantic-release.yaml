@@ -83,7 +83,7 @@ jobs:
           echo "INFO::Semantic release configuration:"
           cat .semantic-release.toml
 
-          git config --global --add safe.directory ${GITHUB_WORKSPACE}
+          git config --global --add safe.directory ${PWD}
       - name: Python Semantic Release
         uses: python-semantic-release/python-semantic-release@master
         with:
