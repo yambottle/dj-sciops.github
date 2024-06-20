@@ -75,7 +75,7 @@ jobs:
               {"Key": "Github_Repo", "Value": "${{ github.event.repository.name }}"},
               {"Key": "Github_Workflow_Version", "Value": "${{ inputs.workflow_version }}"},
               {"Key": "Worker_Type", "Value": "${{ inputs.worker_type }}"},
-              {"Key": "Staging", "Value": "${{ inputs.staging }}
+              {"Key": "Staging", "Value": "${{ inputs.staging }}"}
             ]
   build_worker_ami:
     needs:
