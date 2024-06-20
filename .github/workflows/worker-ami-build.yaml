@@ -65,11 +65,11 @@ jobs:
           ec2_spot_instance_strategy: BestEffort    # Other options are: SpotOnly, BestEffort, MaxPerformance 
           ec2_instance_tags: |
             [
-              {"Key": "Name", "Value": "${{github.event.repository.name}}:gha-runner:${{ github.run_id }}"},
-              {"Key": "Scope", "Value": "Works"},
-              {"Key": "Contract", "Value": "${{github.event.repository.name}}"},
-              {"Key": "Github_Workflow_Version", "Value": "${{ inputs.workflow_version }}"},
-              {"Key": "Worker_Type", "Value": "${{ inputs.worker_type }}"},
+              {"Key": "Name", "Value": "${{github.event.repository.name}}:gha-runner:${{ github.run_id }}"}, 
+              {"Key": "Scope", "Value": "Works"}, 
+              {"Key": "Contract", "Value": "${{github.event.repository.name}}"}, 
+              {"Key": "Github_Workflow_Version", "Value": "${{ inputs.workflow_version }}"}, 
+              {"Key": "Worker_Type", "Value": "${{ inputs.worker_type }}"}, 
               {"Key": "Staging", "Value": "${{ inputs.staging }}"}
             ]
   build_worker_ami:
