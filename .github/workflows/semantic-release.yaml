@@ -16,8 +16,6 @@ jobs:
         id: find_version_dot_py
         run: |
           echo "version_dot_py_path=$(find . -name "version.py" | head -n 1)" >> $GITHUB_OUTPUT
-        outputs:
-          version_dot_py_path: ${{steps.find_version_dot_py.outputs.version_dot_py_path}}
       - name: Config python-semantic-release
         env:
           VERSION_DOT_PY_PATH: ${{ steps.find_version_dot_py.outputs.version_dot_py_path }}
