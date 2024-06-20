@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          # fixed: https://github.com/python-semantic-release/python-semantic-release/issues/721
       - name: Find version.py
         id: find_version_dot_py
         run: |
