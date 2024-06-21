@@ -1,0 +1,7 @@
+name: semantic-release
+on:
+  workflow_dispatch:
+
+jobs:
+  call_semantic_release:
+    uses: dj-sciops/.github/.github/workflows/semantic-release.yaml@main
