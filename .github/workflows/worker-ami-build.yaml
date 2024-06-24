@@ -51,7 +51,7 @@ jobs:
     steps:  
       - name: Start EC2 runner
         id: start-ec2-runner
-        uses: NextChapterSoftware/ec2-action-builder@v1
+        uses: NextChapterSoftware/ec2-action-builder@v1.5
         with:
           github_token: ${{ secrets.RUNNER_PAT}}
           aws_access_key_id: ${{ secrets.RUNNER_AWS_ACCESS_KEY_ID }}
@@ -63,14 +63,12 @@ jobs:
           ec2_security_group_id: "sg-02810c38b0dcb2462"
           ec2_instance_ttl: 120                # Optional (default is 60 minutes)
           ec2_spot_instance_strategy: BestEffort    # Other options are: SpotOnly, BestEffort, MaxPerformance 
-          # TODO - tags not working: https://github.com/NextChapterSoftware/ec2-action-builder/issues/18
           ec2_instance_tags: >
             [
-              {"Key": "Name", "Value": "${{github.event.repository.name}}:gha-runner:${{ github.run_id }}"}, 
               {"Key": "Scope", "Value": "Works"}, 
               {"Key": "Contract", "Value": "${{github.event.repository.name}}"}, 
-              {"Key": "Github_Workflow_Version", "Value": "${{ inputs.workflow_version }}"}, 
-              {"Key": "Worker_Type", "Value": "${{ inputs.worker_type }}"}, 
+              {"Key": "WorkflowVersion", "Value": "${{ inputs.workflow_version }}"}, 
+              {"Key": "WorkerType", "Value": "${{ inputs.worker_type }}"}, 
               {"Key": "Staging", "Value": "${{ inputs.staging }}"}
             ]
   build_worker_ami:
