@@ -51,7 +51,7 @@ jobs:
     steps:  
       - name: Start EC2 runner
         id: start-ec2-runner
-        uses: NextChapterSoftware/ec2-action-builder@v1
+        uses: NextChapterSoftware/ec2-action-builder@v1.5
         with:
           github_token: ${{ secrets.RUNNER_PAT}}
           aws_access_key_id: ${{ secrets.RUNNER_AWS_ACCESS_KEY_ID }}
